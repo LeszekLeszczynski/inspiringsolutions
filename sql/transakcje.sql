@@ -9,7 +9,7 @@ CREATE TABLE transakcje (
   waluta string,
   kwota double,
   data date,
-  strona string
+  strona string,
   odbiorca string)
 PARTITIONED BY (okres string)
 STORED AS ORC;
@@ -21,7 +21,7 @@ CREATE EXTERNAL TABLE transakcje_in(
   waluta string,
   kwota double,
   data date,
-  strona string
+  strona string,
   odbiorca string)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '|'
@@ -40,4 +40,4 @@ INSERT OVERWRITE TABLE transakcje PARTITION (okres)
     strona,
     odbiorca,
     regexp_extract(INPUT__FILE__NAME,'.*TRANSAKCJE_(.*)\.TXT', 1) AS okres
-  FROM karty_in;
+  FROM transakcje_in;
