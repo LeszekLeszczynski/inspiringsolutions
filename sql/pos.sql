@@ -5,7 +5,8 @@ use bzwbk;
 -- target table
 
 CREATE TABLE pos (
-  karta_id int,                                                 
+  karta_id int,  
+  waluta string,                                               
   kwota double,                                                
   data_trans date,                                                 
   czas string,
@@ -17,7 +18,8 @@ STORED AS ORC;
 -- interim table
 
 CREATE EXTERNAL TABLE pos_in(
-  karta_id int,                                                 
+  karta_id int,    
+  waluta string,                                             
   kwota double,                                                
   data_trans date,                                                 
   czas string,
@@ -34,6 +36,7 @@ TBLPROPERTIES ("skip.header.line.count"="1");
 INSERT OVERWRITE TABLE pos PARTITION (okres)
   SELECT
     karta_id,                                                 
+    waluta,
     kwota,                                                
     data_trans,                                                 
     czas,
