@@ -15,4 +15,4 @@ done
 cd hackathon
 
 hdfs dfs -mkdir -p /etl/manual/bzwbk
-hdfs dfs -put . /etl/manual/bzwbk
+hdfs dfs -put * /etl/manual/bzwbk
